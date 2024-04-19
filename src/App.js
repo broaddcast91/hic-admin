@@ -1,5 +1,5 @@
 import Home from './pages/home/Home';
-import Login from './pages/login/Login';
+// import Login from './pages/login/Login';
 import List from './pages/list/List';
 import Single from './pages/single/Single';
 import New from './pages/new/New';
@@ -11,6 +11,8 @@ import { DarkModeContext } from './context/darkModeContext';
 import Availability from './pages/availability/Availability';
 import BookingRequests from './pages/booking-requests/BookingRequests';
 import ContactUsPage from './pages/contact/ContactUsPage';
+import Login from './components/Login/Login';
+import Logout from './components/Logout/Logout';
 
 import FeedbackComp from './pages/feedback/FeedbackComp';
 
@@ -24,6 +26,7 @@ function App() {
           <Route path='/'>
             <Route index element={<Home />} />
             <Route path='login' element={<Login />} />
+            <Route path='logout' element={<Logout />} />
             <Route path='users'>
               <Route index element={<List />} />
               <Route path=':userId' element={<Single />} />
