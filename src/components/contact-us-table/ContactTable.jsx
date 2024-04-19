@@ -1,4 +1,5 @@
 import './contactable.scss';
+import React, { useState, useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -6,8 +7,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import axios from 'axios';
 
 const ContactList = () => {
+  const [contactData, setContactData] = useState([]);
+  
   const rows = [
     {
       id: 1143155,
@@ -66,12 +70,13 @@ const ContactList = () => {
         <TableHead>
           <TableRow>
             <TableCell className='tableCell'>Tracking ID</TableCell>
-            <TableCell className='tableCell'>Product</TableCell>
-            <TableCell className='tableCell'>Customer</TableCell>
+
+            <TableCell className='tableCell'>Name</TableCell>
+            <TableCell className='tableCell'>Email</TableCell>
+            <TableCell className='tableCell'>Subject</TableCell>
+            <TableCell className='tableCell'>Message</TableCell>
             <TableCell className='tableCell'>Date</TableCell>
-            <TableCell className='tableCell'>Amount</TableCell>
-            <TableCell className='tableCell'>Payment Method</TableCell>
-            <TableCell className='tableCell'>Status</TableCell>
+            <TableCell className='tableCell'>Time</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

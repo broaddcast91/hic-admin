@@ -1,10 +1,11 @@
-import './list.scss';
+import './update.scss';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
-import Datatable from '../../components/datatable/Datatable';
-import { Navigate } from 'react-router-dom';
 
-const List = () => {
+import { Navigate } from 'react-router-dom';
+import UpdateDataTable from '../../components/updatedatatable/UpdateDataTable';
+
+const UpdateAvail = () => {
   // Check if the user is authenticated
   const authToken = localStorage.getItem('authToken');
   const userId = localStorage.getItem('userID');
@@ -19,10 +20,10 @@ const List = () => {
       <Sidebar />
       <div className='listContainer'>
         <Navbar />
-        <Datatable />
+        <UpdateDataTable />
       </div>
     </div>
   );
 };
 
-export default List;
+export default UpdateAvail;

@@ -49,9 +49,15 @@ const Navbar = () => {
           <div className='item'>
             <Link to='/logout' style={{ textDecoration: 'none' }}>
               <div className='items'>
-                <span style={{ marginRight: '0.5rem' }}> Logout</span>
+                <span style={{ marginRight: '0.5rem' }} className='textcolor'>
+                  {' '}
+                  Logout
+                </span>
 
-                <GiExitDoor className='icon' style={{ fontSize: '2rem' }} />
+                <GiExitDoor
+                  className='logouticon'
+                  style={{ fontSize: '2rem' }}
+                />
               </div>
             </Link>
           </div>

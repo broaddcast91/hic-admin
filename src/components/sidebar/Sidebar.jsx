@@ -15,6 +15,7 @@ import { MdEventAvailable } from 'react-icons/md';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import FeedbackIcon from '@mui/icons-material/Feedback';
+import { MdEditCalendar } from 'react-icons/md';
 
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { Link } from 'react-router-dom';
@@ -54,6 +55,12 @@ const Sidebar = () => {
             <li>
               <MdEventAvailable className='icon' />
               <span>Availability</span>
+            </li>
+          </Link>
+          <Link to='/update' style={{ textDecoration: 'none' }}>
+            <li>
+              <MdEditCalendar className='icon' />
+              <span>Update Availability</span>
             </li>
           </Link>
           <Link to='/booking' style={{ textDecoration: 'none' }}>

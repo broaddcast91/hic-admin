@@ -60,6 +60,7 @@ const ContactUsPage = () => {
         </div> */}
         <div className='bottom'>
           <h1 className='pageTitle'>Contact Us</h1>
+          {/* Display the table here */}
           <ContactList />
         </div>
       </div>

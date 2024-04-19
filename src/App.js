@@ -15,6 +15,7 @@ import Login from './components/Login/Login';
 import Logout from './components/Logout/Logout';
 
 import FeedbackComp from './pages/feedback/FeedbackComp';
+import UpdateAvail from './pages/update/UpdateAvail';
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -27,6 +28,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path='login' element={<Login />} />
             <Route path='logout' element={<Logout />} />
+            <Route path='update' element={<UpdateAvail />} />
             <Route path='users'>
               <Route index element={<List />} />
               <Route path=':userId' element={<Single />} />
@@ -59,6 +61,7 @@ function App() {
                 element={<New inputs={productInputs} title='Add New Product' />}
               />
             </Route>
+
             <Route path='feedback'>
               <Route index element={<FeedbackComp />} />
               <Route path=':productId' element={<Availability />} />
