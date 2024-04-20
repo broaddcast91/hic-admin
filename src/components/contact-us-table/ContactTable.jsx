@@ -8,10 +8,13 @@ import {
   TableHead,
   TableRow,
   Paper,
+  Pagination,
 } from '@mui/material';
 
 const ContactTable = () => {
   const [contactData, setContactData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5); // Number of items per page
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -43,7 +46,8 @@ const ContactTable = () => {
 
         const { data } = response.data; // Extracting data from the response
 
-        if (data) {
+        if (data && data.length > 0) {
+          // Check if data is not empty
           console.log('Contact data fetched successfully');
           setContactData(data); // Setting contact data to the extracted data
         } else {
@@ -59,6 +63,26 @@ const ContactTable = () => {
     fetchData();
   }, []);
 
+  // Filter out unwanted keys
+  const filteredKeys =
+    contactData.length > 0
+      ? Object.keys(contactData[0]).filter(
+          (key) => !['_id', 'createdAt', 'updatedAt', '__v'].includes(key)
+        )
+      : [];
+
+  // Calculate the index of the last item on the current page
+  const indexOfLastItem = currentPage * itemsPerPage;
+  // Calculate the index of the first item on the current page
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  // Get the current page of items
+  const currentItems = contactData.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Change page
+  const handleChangePage = (event, newPage) => {
+    setCurrentPage(newPage);
+  };
+
   return (
     <div className='container mx-auto max-w-6xl'>
       {isLoading ? (
@@ -70,22 +94,37 @@ const ContactTable = () => {
           <Table>
             <TableHead>
               <TableRow>
-                {Object.keys(contactData[0]).map((key) => (
-                  <TableCell key={key}>{key}</TableCell>
+                {filteredKeys.map((key) => (
+                  <TableCell
+                    key={key}
+                    className='bg-orange-400'
+                    style={{ fontWeight: 'bold' }}
+                  >
+                    {key}
+                  </TableCell>
                 ))}
               </TableRow>
             </TableHead>
             <TableBody>
-              {contactData.map((row, rowIndex) => (
+              {currentItems.map((row, rowIndex) => (
                 <TableRow
                   key={rowIndex}
-                  className={rowIndex % 2 === 0 ? 'bg-gray-100' : 'bg-white'}
+                  className={rowIndex % 2 === 0 ? 'bg-orange-50' : 'bg-white'}
                 >
-                  {Object.values(row).map((value, index) => (
-                    <TableCell key={index}>{value}</TableCell>
+                  {filteredKeys.map((key) => (
+                    <TableCell key={key}>{row[key]}</TableCell>
                   ))}
                 </TableRow>
               ))}
+              <TableRow>
+                <TableCell colSpan={filteredKeys.length} align='center'>
+                  <Pagination
+                    count={Math.ceil(contactData.length / itemsPerPage)} // Calculate total number of pages
+                    page={currentPage}
+                    onChange={handleChangePage}
+                  />
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </TableContainer>
