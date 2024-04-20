@@ -1,10 +1,12 @@
 import './contactus.scss';
+import './style.css';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 // import Chart from '../../components/chart/Chart';
 import { Navigate } from 'react-router-dom';
+import ContactTable from '../../components/contact-us-table/ContactTable';
 
-import ContactList from '../../components/contact-us-table/ContactTable';
+// import ContactList from '../../components/contact-us-table/ContactTable';
 
 const ContactUsPage = () => {
   // Check if the user is authenticated
@@ -61,7 +63,7 @@ const ContactUsPage = () => {
         <div className='bottom'>
           <h1 className='pageTitle'>Contact Us</h1>
           {/* Display the table here */}
-          <ContactList />
+          <ContactTable />
         </div>
       </div>
     </div>
