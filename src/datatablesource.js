@@ -47,6 +47,8 @@ export const userRows = [
     status: 'available',
     roomid: 'HIC-SS',
     available: 10,
+    link: '/viewstandardsingleavail',
+    
   },
   {
     id: 2,
@@ -55,6 +57,7 @@ export const userRows = [
     roomid: 'HIC-SD',
     status: 'no-room',
     available: 6,
+    link: '/viewstandardoubleavail',
   },
   {
     id: 3,
@@ -63,6 +66,7 @@ export const userRows = [
     roomid: 'HIC-ES',
     status: 'on-hold',
     available: 4,
+    link: '/viewexecutivesingleavail',
   },
   {
     id: 4,
@@ -71,6 +75,7 @@ export const userRows = [
     roomid: 'HIC-ED',
     status: 'available',
     available: 4,
+    link: '/viewexecutivedoubleavail',
   },
   {
     id: 5,
@@ -79,6 +84,7 @@ export const userRows = [
     roomid: 'HIC-DS',
     status: 'no-room',
     available: 3,
+    link: '/viewdeluxesingleavail',
   },
   {
     id: 6,
@@ -87,6 +93,7 @@ export const userRows = [
     roomid: 'HIC-DD',
     status: 'available',
     available: 2,
+    link: '/viewdeluxedoubleavail',
   },
   {
     id: 7,
@@ -95,6 +102,7 @@ export const userRows = [
     roomid: 'HIC-SS',
     status: 'no-room',
     available: 2,
+    link: '/viewsuitesingleavail',
   },
   {
     id: 8,
@@ -103,6 +111,7 @@ export const userRows = [
     roomid: 'HIC-SD',
     status: 'available',
     available: 1,
+    link: '/viewsuitedoubleavail',
   },
   // {
   //   id: 9,

@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 const Datatable = () => {
-  const [data, setData] = useState(userRows);
+  const [data] = useState(userRows);
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
-  };
+  // const handleDelete = (id) => {
+  //   setData(data.filter((item) => item.id !== id));
+  // };
 
   const actionColumn = [
     {
@@ -19,15 +19,15 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className='cellAction'>
-            <Link to='/users/test' style={{ textDecoration: 'none' }}>
-              <div className='viewButton'>View</div>
+            <Link to={params.row.link} style={{ textDecoration: 'none' }}>
+              <div className='viewButton'>View Status</div>
             </Link>
-            <div
+            {/* <div
               className='deleteButton'
               onClick={() => handleDelete(params.row.id)}
             >
               Delete
-            </div>
+            </div> */}
           </div>
         );
       },
@@ -37,9 +37,9 @@ const Datatable = () => {
     <div className='datatable'>
       <div className='datatableTitle'>
         Rooms
-        <Link to='/users/new' className='link'>
+        {/* <Link to='/users/new' className='link'>
           Add New
-        </Link>
+        </Link> */}
       </div>
       <DataGrid
         className='datagrid'

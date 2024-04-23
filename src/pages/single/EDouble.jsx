@@ -2,11 +2,10 @@ import './single.scss';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 import Chart from '../../components/chart/Chart';
-// import List from '../../components/table/Table';
 
-import StandardSingleAvail from '../standard-single/StandardSingleAvail';
+import ExeDoubleAvail from '../exe-double/ExeDoubleAvail';
 
-const Single = () => {
+const EDouble = () => {
   return (
     <div className='single'>
       <Sidebar />
@@ -23,7 +22,7 @@ const Single = () => {
                 className='itemImg'
               />
               <div className='details'>
-                <h1 className='itemTitle'>Standard Single</h1>
+                <h1 className='itemTitle'>Executive Double</h1>
                 <div className='detailItem'>
                   <span className='itemKey'>Email:</span>
                   <span className='itemValue'>janedoe@gmail.com</span>
@@ -50,12 +49,12 @@ const Single = () => {
           </div>
         </div>
         <div className='bottom'>
-          <h1 className='title'>Standard Single</h1>
-          <StandardSingleAvail />
+          <h1 className='title'>Executive Double</h1>
+          <ExeDoubleAvail />
         </div>
       </div>
     </div>
   );
 };
 
-export default Single;
+export default EDouble;

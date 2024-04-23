@@ -11,7 +11,7 @@ import {
   Pagination,
 } from '@mui/material';
 
-const FeedbackTable = () => {
+const AvailTable = () => {
   const [contactData, setContactData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5); // Number of items per page
@@ -134,4 +134,4 @@ const FeedbackTable = () => {
   );
 };
 
-export default FeedbackTable;
+export default AvailTable;

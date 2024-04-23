@@ -11,7 +11,7 @@ import {
   Pagination,
 } from '@mui/material';
 
-const FeedbackTable = () => {
+const ExeDoubleAvail = () => {
   const [contactData, setContactData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5); // Number of items per page
@@ -36,7 +36,7 @@ const FeedbackTable = () => {
         );
 
         const response = await axios.get(
-          `https://hic-backend.onrender.com/getfeedbacks/${storedUserId}`,
+          `https://hic-backend.onrender.com/getbookedRoomsByroomType/661902402831864696c9ff76`,
           {
             headers: {
               Authorization: `Bearer ${storedToken}`,
@@ -44,14 +44,15 @@ const FeedbackTable = () => {
           }
         );
 
-        const { data } = response.data; // Extracting data from the response
-
-        if (data && data.length > 0) {
-          // Check if data is not empty
-          console.log('Contact data fetched successfully');
-          setContactData(data); // Setting contact data to the extracted data
+        if (response.data.status && Array.isArray(response.data.data)) {
+          const formattedData = response.data.data.map((room) => ({
+            ...room,
+            bookedDate: formatDate(room.bookedDate),
+          }));
+          setContactData(formattedData);
+          console.log('Contact data:', formattedData);
         } else {
-          console.error('Contact data not found in the response');
+          console.error('Invalid data format:', response.data);
         }
       } catch (error) {
         console.error('Error fetching contact data:', error);
@@ -63,12 +64,29 @@ const FeedbackTable = () => {
     fetchData();
   }, []);
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
   // Filter out unwanted keys
   const filteredKeys =
     contactData.length > 0
       ? Object.keys(contactData[0]).filter(
           (key) =>
-            !['_id', 'createdAt', 'updatedAt', 'isDeleted', '__v'].includes(key)
+            ![
+              'roomType',
+              '_id',
+              'notAvailableRooms',
+              'createdAt',
+              '__v',
+              'updatedAt',
+              'isDeleted',
+              'is_Available',
+            ].includes(key)
         )
       : [];
 
@@ -134,4 +152,4 @@ const FeedbackTable = () => {
   );
 };
 
-export default FeedbackTable;
+export default ExeDoubleAvail;

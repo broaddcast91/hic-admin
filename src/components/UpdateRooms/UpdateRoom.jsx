@@ -1,12 +1,11 @@
-import './single.scss';
+import './updateroom.scss';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 import Chart from '../../components/chart/Chart';
+import UpdateForm from '../updatedatatable/UpdateForm';
 // import List from '../../components/table/Table';
 
-import StandardSingleAvail from '../standard-single/StandardSingleAvail';
-
-const Single = () => {
+const UpdateRoom = () => {
   return (
     <div className='single'>
       <Sidebar />
@@ -23,7 +22,7 @@ const Single = () => {
                 className='itemImg'
               />
               <div className='details'>
-                <h1 className='itemTitle'>Standard Single</h1>
+                <h1 className='itemTitle'>Update Room</h1>
                 <div className='detailItem'>
                   <span className='itemKey'>Email:</span>
                   <span className='itemValue'>janedoe@gmail.com</span>
@@ -51,11 +50,11 @@ const Single = () => {
         </div>
         <div className='bottom'>
           <h1 className='title'>Standard Single</h1>
-          <StandardSingleAvail />
+          <UpdateForm />
         </div>
       </div>
     </div>
   );
 };
 
-export default Single;
+export default UpdateRoom;

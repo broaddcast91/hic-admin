@@ -48,16 +48,16 @@ const Sidebar = () => {
           <Link to='/users' style={{ textDecoration: 'none' }}>
             <li>
               <MeetingRoomIcon className='icon' />
-              <span>Rooms</span>
+              <span>Room Availability</span>
             </li>
           </Link>
           <Link to='/availability' style={{ textDecoration: 'none' }}>
             <li>
               <MdEventAvailable className='icon' />
-              <span>Availability</span>
+              <span>Overall Availability</span>
             </li>
           </Link>
-          <Link to='/update' style={{ textDecoration: 'none' }}>
+          <Link to='/updateroom' style={{ textDecoration: 'none' }}>
             <li>
               <MdEditCalendar className='icon' />
               <span>Update Availability</span>

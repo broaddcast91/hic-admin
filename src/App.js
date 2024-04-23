@@ -16,6 +16,14 @@ import Logout from './components/Logout/Logout';
 
 import FeedbackComp from './pages/feedback/FeedbackComp';
 import UpdateAvail from './pages/update/UpdateAvail';
+import SDouble from './pages/single/SDouble';
+import ESingle from './pages/single/ESingle';
+import EDouble from './pages/single/EDouble';
+import DSingle from './pages/single/DSingle';
+import DDouble from './pages/single/DDouble';
+import SuitSingle from './pages/single/SuitSingle';
+import SuitDouble from './pages/single/SuitDouble';
+import UpdateRoom from './components/UpdateRooms/UpdateRoom';
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -29,6 +37,16 @@ function App() {
             <Route path='login' element={<Login />} />
             <Route path='logout' element={<Logout />} />
             <Route path='update' element={<UpdateAvail />} />
+            {/* 8 rooms availability */}
+            <Route path='viewstandardsingleavail' element={<Single />} />
+            <Route path='viewstandardoubleavail' element={<SDouble />} />
+            <Route path='viewexecutivesingleavail' element={<ESingle />} />
+            <Route path='viewexecutivedoubleavail' element={<EDouble />} />
+            <Route path='viewdeluxesingleavail' element={<DSingle />} />
+            <Route path='viewdeluxedoubleavail' element={<DDouble />} />
+            <Route path='viewsuitesingleavail' element={<SuitSingle />} />
+            <Route path='viewsuitedoubleavail' element={<SuitDouble />} />
+            <Route path='updateroom' element={<UpdateRoom />} />
             <Route path='users'>
               <Route index element={<List />} />
               <Route path=':userId' element={<Single />} />
