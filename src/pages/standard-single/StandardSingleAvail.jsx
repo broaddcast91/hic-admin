@@ -103,7 +103,7 @@ const StandardSingleAvail = () => {
   };
 
   return (
-    <div className='container mx-auto  overflow-x-auto'>
+    <div className='container mx-auto overflow-x-auto'>
       {isLoading ? (
         <p>Loading...</p>
       ) : contactData.length === 0 ? (

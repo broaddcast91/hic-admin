@@ -103,7 +103,7 @@ const SuitDoubleAvail = () => {
   };
 
   return (
-    <div className='container mx-auto max-w-6xl'>
+    <div className='container mx-auto overflow-x-auto'>
       {isLoading ? (
         <p>Loading...</p>
       ) : contactData.length === 0 ? (
