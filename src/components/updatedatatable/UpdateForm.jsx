@@ -45,6 +45,7 @@ const UpdateForm = () => {
     } catch (error) {
       // Handle error
       console.error('Error while making reservation:', error);
+      window.alert(error.response.data.message);
     }
   };
 
