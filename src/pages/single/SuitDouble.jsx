@@ -11,7 +11,7 @@ const SuitDouble = () => {
       <Sidebar />
       <div className='singleContainer'>
         <Navbar />
-        <div className='top'>
+        {/* <div className='top'>
           <div className='left'>
             <div className='editButton'>Edit</div>
             <h1 className='title'>Information</h1>
@@ -47,9 +47,9 @@ const SuitDouble = () => {
           <div className='right'>
             <Chart aspect={3 / 1} title='User Spending ( Last 6 Months)' />
           </div>
-        </div>
+        </div> */}
         <div className='bottom'>
-          <h1 className='title'>Standard Single</h1>
+          <h1 className='title'>Deluxe Suite Double</h1>
           <SuitDoubleAvail />
         </div>
       </div>

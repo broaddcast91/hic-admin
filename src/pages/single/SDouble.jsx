@@ -4,7 +4,7 @@ import Navbar from '../../components/navbar/Navbar';
 
 // import List from '../../components/table/Table';
 
-import StandardDoubleAvail from '../standard-single/StandardSingleAvail';
+import StandardDoubleAvail from '../standard-double/StandardDoubleAvail';
 
 const SDouble = () => {
   return (

@@ -1,154 +1,219 @@
 import React, { useState, useEffect } from 'react';
+import { DataGrid } from '@mui/x-data-grid';
+import { Box } from '@mui/material';
 import axios from 'axios';
+// import { AiOutlineMenu } from "react-icons/ai";
+import { BiRefresh } from 'react-icons/bi';
+// import Select from '@mui/material/Select';
+// import MenuItem from '@mui/material/MenuItem';
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Pagination,
-} from '@mui/material';
+  GridToolbarContainer,
+  GridToolbarColumnsButton,
+  GridToolbarFilterButton,
+  GridToolbarDensitySelector,
+} from '@mui/x-data-grid';
+import { IconButton } from '@mui/material';
+import DownloadIcon from '@mui/icons-material/Download';
 
-const StandardDoubleAvail = () => {
-  const [contactData, setContactData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(5); // Number of items per page
-  const [isLoading, setIsLoading] = useState(true);
+const StandardDoubleAvail = ({ open, setOpen }) => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [data, setData] = useState([]);
+  const [sub, setSub] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
+    async function fetchData() {
       try {
-        console.log('Fetching user ID and token from local storage...');
-        const storedUserId = localStorage.getItem('userID');
-        const storedToken = localStorage.getItem('authToken');
-
-        if (!storedUserId || !storedToken) {
-          console.error('User ID or token not found in local storage');
+        const token = localStorage.getItem('authToken');
+        // const storedUserId = localStorage.getItem('userID');
+        if (!token) {
+          window.location.href = '/login';
           return;
         }
-
-        console.log(
-          'User ID and token retrieved from local storage:',
-          storedUserId,
-          storedToken
-        );
-
-        const response = await axios.get(
+        setLoading(true);
+        const res = await axios.get(
           `https://hic-backend.onrender.com/getbookedRoomsByroomType/661902052831864696c9ff72`,
           {
-            headers: {
-              Authorization: `Bearer ${storedToken}`,
-            },
+            headers: { Authorization: `Bearer ${token}` },
           }
         );
-
-        if (response.data.status && Array.isArray(response.data.data)) {
-          const formattedData = response.data.data.map((room) => ({
-            ...room,
-            bookedDate: formatDate(room.bookedDate),
-          }));
-          setContactData(formattedData);
-          console.log('Contact data:', formattedData);
-        } else {
-          console.error('Invalid data format:', response.data);
-        }
-      } catch (error) {
-        console.error('Error fetching contact data:', error);
-      } finally {
-        setIsLoading(false);
+        setData(res.data.data);
+        setLoading(false);
+        setSub(false);
+      } catch (err) {
+        setError(err);
+        setLoading(false);
       }
-    };
-
+    }
     fetchData();
-  }, []);
+  }, [sub]);
 
-  const formatDate = (dateString) => {
+  // const handleStatusChange = (row, newStatus) => {
+  //   const token = localStorage.getItem('authToken');
+  //   const storedUserId = localStorage.getItem('userID');
+
+  //   setSub(true);
+  //   axios
+  //     .put(
+  //       `https://hic-backend.onrender.com/updateStatus/${row.id}/${storedUserId}`,
+  //       { status: newStatus },
+  //       {
+  //         headers: { Authorization: `Bearer ${token}` },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       console.log(response);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // };
+
+  // const statusOptions = ['Pending', 'Approved', 'Rejected'];
+
+  // function formatDate(dateString) {
+  //   const date = new Date(dateString);
+  //   const day = String(date.getDate()).padStart(2, '0');
+  //   const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based in JavaScript
+  //   const year = date.getFullYear();
+  //   return `${day}-${month}-${year}`;
+  // }
+  function formatDate(dateString) {
     const date = new Date(dateString);
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based in JavaScript
     const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
+    return `${day}-${month}-${year}`;
+  }
+
+  const columns = [
+    { field: 'no', headerName: 'Sr. No.', flex: 0.5 },
+    { field: 'totalRooms', headerName: 'Total Rooms', flex: 1 },
+    { field: 'noOfRoomsAvailable', headerName: 'Available Rooms', flex: 1 },
+    {
+      field: 'bookedDate',
+      headerName: 'Booked Date',
+      flex: 1,
+      renderCell: (params) => formatDate(params.row.bookedDate),
+    },
+  ];
+
+  const rows = data.map((item, index) => ({
+    id: item._id,
+    no: index + 1,
+    ...item,
+  }));
+
+  const handleDownloadCSV = () => {
+    const csvData = [];
+    const headers = columns.map((column) => column.headerName);
+    csvData.push(headers);
+
+    rows.forEach((item) => {
+      const row = columns.map((column) => item[column.field]);
+      csvData.push(row);
+    });
+
+    const csvContent = csvData.map((row) => row.join(',')).join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.href = url;
+    a.download = 'Standard Double.csv';
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
   };
 
-  // Filter out unwanted keys
-  const filteredKeys =
-    contactData.length > 0
-      ? Object.keys(contactData[0]).filter(
-          (key) =>
-            ![
-              'roomType',
-              '_id',
-              'notAvailableRooms',
-              'createdAt',
-              '__v',
-              'updatedAt',
-              'isDeleted',
-              'is_Available',
-            ].includes(key)
-        )
-      : [];
+  // Custom toolbar with the download button
 
-  // Calculate the index of the last item on the current page
-  const indexOfLastItem = currentPage * itemsPerPage;
-  // Calculate the index of the first item on the current page
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  // Get the current page of items
-  const currentItems = contactData.slice(indexOfFirstItem, indexOfLastItem);
-
-  // Change page
-  const handleChangePage = (event, newPage) => {
-    setCurrentPage(newPage);
+  const CustomToolbar = () => {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarColumnsButton />
+        <GridToolbarFilterButton />
+        <GridToolbarDensitySelector />
+        <IconButton
+          color='primary'
+          onClick={handleDownloadCSV}
+          sx={{
+            marginLeft: '10px',
+            backgroundColor: 'white',
+            fontSize: '14px',
+            padding: '5px',
+            minWidth: 'auto',
+            height: '25px',
+            color: '#fb923c',
+            '&:hover': {
+              color: '#dc2625',
+            },
+          }}
+        >
+          <DownloadIcon />
+        </IconButton>
+      </GridToolbarContainer>
+    );
   };
-
   return (
-    <div className='container mx-auto overflow-x-auto'>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : contactData.length === 0 ? (
-        <p>No data available</p>
-      ) : (
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                {filteredKeys.map((key) => (
-                  <TableCell
-                    key={key}
-                    className='bg-orange-400 uppercase'
-                    style={{ fontWeight: 'bold' }}
-                  >
-                    {key}
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {currentItems.map((row, rowIndex) => (
-                <TableRow
-                  key={rowIndex}
-                  className={rowIndex % 2 === 0 ? 'bg-orange-50' : 'bg-white'}
-                >
-                  {filteredKeys.map((key) => (
-                    <TableCell key={key}>{row[key]}</TableCell>
-                  ))}
-                </TableRow>
-              ))}
-              <TableRow>
-                <TableCell colSpan={filteredKeys.length} align='center'>
-                  <Pagination
-                    count={Math.ceil(contactData.length / itemsPerPage)} // Calculate total number of pages
-                    page={currentPage}
-                    onChange={handleChangePage}
-                  />
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
-      )}
-    </div>
+    <>
+      <div className='flex justify-between md:hidden'>
+        <div className='flex'>{/* Additional buttons or components */}</div>
+        <div className='flex'>
+          <BiRefresh
+            className='mx-4 cursor-pointer text-3xl duration-500 hover:rotate-180'
+            onClick={() => setSub(true)}
+          />
+        </div>
+      </div>
+
+      <div className='overflow-hidden'>
+        <Box
+          m='0 20px 0 0'
+          height='75vh'
+          sx={{
+            '& .MuiDataGrid-root': {
+              border: 'none',
+            },
+            '& .MuiDataGrid-cell': {
+              paddingBottom: '5px',
+              paddingTop: '5px',
+            },
+            '& .MuiDataGrid-columnHeaders': {
+              background: '#fb923c',
+              borderBottom: 'none',
+              color: 'white',
+            },
+            '& .MuiDataGrid-toolbarContainer .MuiButton-text ': {
+              color: '#fb923c',
+            },
+            '&::-webkit-scrollbar-thumb': {
+              backgroundColor: '#e6e6e6',
+              borderRadius: '100px',
+              height: '5px',
+            },
+            '&::-webkit-scrollbar-track': {
+              backgroundColor: '#e6e6e6',
+            },
+          }}
+        >
+          {loading ? (
+            <div>Loading</div>
+          ) : error ? (
+            'No data found.'
+          ) : (
+            <DataGrid
+              // getRowHeight={() => "auto"}
+              rows={rows}
+              columns={columns}
+              components={{ Toolbar: CustomToolbar }}
+            />
+          )}
+        </Box>
+      </div>
+    </>
   );
 };
 

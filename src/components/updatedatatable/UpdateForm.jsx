@@ -49,10 +49,10 @@ const UpdateForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='flex flex-wrap'>
-      <h2 className='text-lg font-semibold mb-4 w-full'>
+    <form onSubmit={handleSubmit} className='flex flex-wrap mt-10'>
+      {/* <h2 className='text-lg font-semibold mb-4 w-full'>
         Create Room Availability
-      </h2>
+      </h2> */}
 
       {/* Room Type and Number of Available Total Rooms */}
       <div className='mb-4 w-full md:w-1/2 pr-4'>

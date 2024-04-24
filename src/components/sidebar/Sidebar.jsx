@@ -1,5 +1,5 @@
 import './sidebar.scss';
-import DashboardIcon from '@mui/icons-material/Dashboard';
+// import DashboardIcon from '@mui/icons-material/Dashboard';
 // import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 // import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 // import CreditCardIcon from '@mui/icons-material/CreditCard';
@@ -10,7 +10,7 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 // import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 // import SettingsSystemDaydreamOutlinedIcon from '@mui/icons-material/SettingsSystemDaydreamOutlined';
 // import PsychologyOutlinedIcon from '@mui/icons-material/PsychologyOutlined';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+// import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { MdEventAvailable } from 'react-icons/md';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
@@ -19,11 +19,11 @@ import { MdEditCalendar } from 'react-icons/md';
 
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { Link } from 'react-router-dom';
-import { DarkModeContext } from '../../context/darkModeContext';
-import { useContext } from 'react';
+// import { DarkModeContext } from '../../context/darkModeContext';
+// import { useContext } from 'react';
 
 const Sidebar = () => {
-  const { dispatch } = useContext(DarkModeContext);
+  // const { dispatch } = useContext(DarkModeContext);
   return (
     <div className='sidebar'>
       <div className='top'>
@@ -39,12 +39,12 @@ const Sidebar = () => {
       <hr />
       <div className='center'>
         <ul>
-          <p className='title'>MAIN</p>
+          {/* <p className='title'>MAIN</p>
           <li>
             <DashboardIcon className='icon' />
             <span>Dashboard</span>
-          </li>
-          <p className='title'>LISTS</p>
+          </li> */}
+          <p className='title'>MAIN</p>
           <Link to='/users' style={{ textDecoration: 'none' }}>
             <li>
               <MeetingRoomIcon className='icon' />
@@ -54,13 +54,13 @@ const Sidebar = () => {
           <Link to='/availability' style={{ textDecoration: 'none' }}>
             <li>
               <MdEventAvailable className='icon' />
-              <span>Overall Availability</span>
+              <span>Edit Rooms</span>
             </li>
           </Link>
           <Link to='/updateroom' style={{ textDecoration: 'none' }}>
             <li>
               <MdEditCalendar className='icon' />
-              <span>Update Availability</span>
+              <span>Create Rooms</span>
             </li>
           </Link>
           <Link to='/booking' style={{ textDecoration: 'none' }}>
@@ -104,10 +104,10 @@ const Sidebar = () => {
             <span>Settings</span>
           </li> */}
           <p className='title'>USER</p>
-          <li>
+          {/* <li>
             <AccountCircleOutlinedIcon className='icon' />
             <span>Profile</span>
-          </li>
+          </li> */}
           <Link to='/logout' style={{ textDecoration: 'none' }}>
             <li>
               <ExitToAppIcon className='icon' />
@@ -116,7 +116,7 @@ const Sidebar = () => {
           </Link>
         </ul>
       </div>
-      <div className='bottom'>
+      {/* <div className='bottom'>
         <div
           className='colorOption'
           onClick={() => dispatch({ type: 'LIGHT' })}
@@ -125,7 +125,7 @@ const Sidebar = () => {
           className='colorOption'
           onClick={() => dispatch({ type: 'DARK' })}
         ></div>
-      </div>
+      </div> */}
     </div>
   );
 };
