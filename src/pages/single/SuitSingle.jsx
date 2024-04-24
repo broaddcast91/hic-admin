@@ -1,7 +1,7 @@
 import './single.scss';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
-import Chart from '../../components/chart/Chart';
+// import Chart from '../../components/chart/Chart';
 
 import SuitSingleAvail from '../suit-single/SuitSingleAvail';
 
