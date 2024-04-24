@@ -21,7 +21,7 @@ const AvailTable = () => {
   const [sub, setSub] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
-  const [setUpdatedTotalRooms] = useState('');
+  // const [updatedTotalRooms, setUpdatedTotalRooms] = useState('');
 
   useEffect(() => {
     async function fetchData() {
@@ -51,7 +51,7 @@ const AvailTable = () => {
 
   const handleEditClick = (row) => {
     setSelectedRow(row);
-    setUpdatedTotalRooms(row.totalRooms); // Set the initial value to the current total rooms
+    // setUpdatedTotalRooms(row.totalRooms); // Set the initial value to the current total rooms
     setIsPopupOpen(true);
   };
 
