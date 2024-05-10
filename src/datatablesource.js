@@ -48,7 +48,6 @@ export const userRows = [
     roomid: 'HIC-SS',
     available: 10,
     link: '/viewstandardsingleavail',
-    
   },
   {
     id: 2,
