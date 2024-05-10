@@ -24,6 +24,7 @@ import DDouble from './pages/single/DDouble';
 import SuitSingle from './pages/single/SuitSingle';
 import SuitDouble from './pages/single/SuitDouble';
 import UpdateRoom from './components/UpdateRooms/UpdateRoom';
+import BanquetHallEnquiry from './pages/banquet-hall-enquiry/BanquetHallEnquiry';
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -65,6 +66,14 @@ function App() {
             </Route>
             <Route path='booking'>
               <Route index element={<BookingRequests />} />
+              <Route path=':productId' element={<Availability />} />
+              <Route
+                path='new'
+                element={<New inputs={productInputs} title='Add New Product' />}
+              />
+            </Route>
+            <Route path='banquet'>
+              <Route index element={<BanquetHallEnquiry />} />
               <Route path=':productId' element={<Availability />} />
               <Route
                 path='new'

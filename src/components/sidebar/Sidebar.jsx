@@ -63,10 +63,17 @@ const Sidebar = () => {
               <span>Create Rooms</span>
             </li>
           </Link>
+
           <Link to='/booking' style={{ textDecoration: 'none' }}>
             <li>
               <AddBusinessIcon className='icon' />
               <span>Booking Requests</span>
+            </li>
+          </Link>
+          <Link to='/banquet' style={{ textDecoration: 'none' }}>
+            <li>
+              <AddBusinessIcon className='icon' />
+              <span>Banquet Hall Enquiry</span>
             </li>
           </Link>
           <Link to='/contactus' style={{ textDecoration: 'none' }}>

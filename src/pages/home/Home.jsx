@@ -6,6 +6,7 @@ import Featured from '../../components/featured/Featured';
 import Chart from '../../components/chart/Chart';
 import Table from '../../components/table/AvailTable';
 import { Navigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const Home = () => {
   // Check if the user is authenticated
@@ -18,26 +19,33 @@ const Home = () => {
     return <Navigate to='/login' />;
   }
   return (
-    <div className='home'>
-      <Sidebar />
-      <div className='homeContainer'>
-        <Navbar />
-        <div className='widgets'>
-          <Widget type='user' />
-          <Widget type='order' />
-          <Widget type='earning' />
-          <Widget type='balance' />
-        </div>
-        <div className='charts'>
-          <Featured />
-          <Chart title='Last 6 Months (Revenue)' aspect={2 / 1} />
-        </div>
-        <div className='listContainer'>
-          <div className='listTitle'>Latest Transactions</div>
-          <Table />
+    <>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Home - Admin Dashboard || Hotel Inner Circle</title>
+        <link rel='canonical' href='http://mysite.com/example' />
+      </Helmet>
+      <div className='home'>
+        <Sidebar />
+        <div className='homeContainer'>
+          <Navbar />
+          <div className='widgets'>
+            <Widget type='user' />
+            <Widget type='order' />
+            <Widget type='earning' />
+            <Widget type='balance' />
+          </div>
+          <div className='charts'>
+            <Featured />
+            <Chart title='Last 6 Months (Revenue)' aspect={2 / 1} />
+          </div>
+          <div className='listContainer'>
+            <div className='listTitle'>Latest Transactions</div>
+            <Table />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
