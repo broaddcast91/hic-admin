@@ -15,7 +15,7 @@ const Datatable = () => {
   // State to hold the data fetched from the API
   const [data, setData] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
-  const [selectedRow, setSelectedRow] = useState(null); // State to hold selected row data
+  const [setSelectedRow] = useState(null); // State to hold selected row data
 
   // Function to handle opening the dialog and set selected row data
   const handleOpenDialog = (rowData) => {

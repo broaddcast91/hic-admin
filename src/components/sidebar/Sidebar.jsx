@@ -2,7 +2,7 @@ import './sidebar.scss';
 
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
-import { MdEventAvailable } from 'react-icons/md';
+// import { MdEventAvailable } from 'react-icons/md';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import FeedbackIcon from '@mui/icons-material/Feedback';
