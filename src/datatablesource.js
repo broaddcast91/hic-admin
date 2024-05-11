@@ -18,7 +18,11 @@ export const userColumns = [
     headerName: 'Room Id',
     width: 230,
   },
-
+  {
+    field: 'price',
+    headerName: 'Price',
+    width: 100,
+  },
   {
     field: 'available',
     headerName: 'Available',
@@ -48,6 +52,7 @@ export const userRows = [
     roomid: 'HIC-SS',
     available: 10,
     link: '/viewstandardsingleavail',
+    ObjectID: '661901d82831864696c9ff70',
   },
   {
     id: 2,
@@ -57,6 +62,7 @@ export const userRows = [
     status: 'no-room',
     available: 6,
     link: '/viewstandardoubleavail',
+    ObjectID: '661902052831864696c9ff72',
   },
   {
     id: 3,
@@ -66,6 +72,7 @@ export const userRows = [
     status: 'on-hold',
     available: 4,
     link: '/viewexecutivesingleavail',
+    ObjectID: '661902282831864696c9ff74',
   },
   {
     id: 4,
@@ -75,6 +82,7 @@ export const userRows = [
     status: 'available',
     available: 4,
     link: '/viewexecutivedoubleavail',
+    ObjectID: '661902402831864696c9ff76',
   },
   {
     id: 5,
@@ -84,6 +92,7 @@ export const userRows = [
     status: 'no-room',
     available: 3,
     link: '/viewdeluxesingleavail',
+    ObjectID: '661902732831864696c9ff78',
   },
   {
     id: 6,
@@ -93,6 +102,7 @@ export const userRows = [
     status: 'available',
     available: 2,
     link: '/viewdeluxedoubleavail',
+    ObjectID: '661902892831864696c9ff7a',
   },
   {
     id: 7,
@@ -102,6 +112,7 @@ export const userRows = [
     status: 'no-room',
     available: 2,
     link: '/viewsuitesingleavail',
+    ObjectID: '6619029d2831864696c9ff7c',
   },
   {
     id: 8,
@@ -111,21 +122,6 @@ export const userRows = [
     status: 'available',
     available: 1,
     link: '/viewsuitedoubleavail',
+    ObjectID: '661902bf2831864696c9ff7e',
   },
-  // {
-  //   id: 9,
-  //   username: 'Roxie',
-  //   img: 'https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-  //   email: 'snow@gmail.com',
-  //   status: 'pending',
-  //   age: 65,
-  // },
-  // {
-  //   id: 10,
-  //   username: 'Roxie',
-  //   img: 'https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-  //   email: 'snow@gmail.com',
-  //   status: 'active',
-  //   age: 65,
-  // },
 ];
